@@ -36,7 +36,7 @@ CREATE TABLE `rezervacije` (
   `opis` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `rez` (`rezID`,`korisnik`, `sto`, `datumRez`,`opis`) VALUES
+INSERT INTO `rezervacije` (`rezID`,`korisnik`, `sto`, `datumRez`,`opis`) VALUES
 (1,'testKorisnik', 'TEST','2008-11-11', 99);
 
 
@@ -64,7 +64,7 @@ INSERT INTO `user` (`id`, `name`, `password`) VALUES
 ALTER TABLE `stolovi`
   ADD PRIMARY KEY (`stoID`);
 
-ALTER TABLE `rez`
+ALTER TABLE `rezervacije`
   ADD PRIMARY KEY (`rezID`);
 
 ALTER TABLE `user`
@@ -73,7 +73,7 @@ ALTER TABLE `user`
 ALTER TABLE `stolovi`
   MODIFY `stoID` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
-ALTER TABLE `rez`
+ALTER TABLE `rezervacije`
   MODIFY `rezID` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 ALTER TABLE `user`
