@@ -38,10 +38,10 @@ class Rez {
         return $conn->query($q); //vraca tabelu sa ubacenim id-em (novom rezervacijom) 
     }
 
-    public function update(mysqli $conn)
+    public static function update($rezID, $sto, $datumRez, $opis, $korisnik, mysqli $conn)
     {
-        $query = "UPDATE rezervacije SET sto=$this->sto, datumRez=$this->datumRez, opis=$this->opis, korisnik=$this->korisnik WHERE id=$this->stoID";
-        return $conn->query($query); //vraca tabelu sa update-ovanim sadrzajem 
+        $q = "UPDATE rezervacije SET sto=$sto, datumRez=$datumRez, opis=$opis, korisnik=$korisnik WHERE rezID=$rezID";
+        return $conn->query($q); //vraca tabelu sa update-ovanim sadrzajem 
     }
     public static function getByID($rezID, mysqli $conn)
     {
