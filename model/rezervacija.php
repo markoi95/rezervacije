@@ -40,7 +40,7 @@ class Rez {
 
     public static function update($rezID, $sto, $datumRez, $opis, $korisnik, mysqli $conn)
     {
-        $q = "UPDATE rezervacije SET sto=$sto, datumRez=$datumRez, opis=$opis, korisnik=$korisnik WHERE rezID=$rezID";
+        $q = "UPDATE rezervacije SET sto=$sto, datumRez='$datumRez', opis=$opis, korisnik='$korisnik' WHERE rezID=$rezID";
         return $conn->query($q); //vraca tabelu sa update-ovanim sadrzajem 
     }
     public static function getByID($rezID, mysqli $conn)

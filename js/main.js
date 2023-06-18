@@ -183,10 +183,10 @@ $('#izmeniRez').submit(function(){
       if(response==="radi"){                              //iz nekog razloga ne radi uslov u if
           alert("Izmena prihvacena");
           console.log("Uspesno zakazivanje");
-          location.reload(true);
+          //location.reload(true);
       }else {
         console.log("Izmena je neuspesna" +response);
-        location.reload(true);
+        //location.reload(true);
       }
   });
 
