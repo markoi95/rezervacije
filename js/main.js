@@ -75,7 +75,7 @@ function obrisiSto(){
     }); 
 
   request.done(function (response, textStatus, jqXHR) {
-    if (response === "radi") {
+    if (response.trim() === "radi") {
       console.log("Sto je obrisan");
       location.reload(true);
     } else {
@@ -95,7 +95,7 @@ function obrisiRez(rezID){
     });
      
     request.done(function (response, textStatus, jqXHR) {
-      if (response === "radi") {
+      if (response.trim() === "radi") {
         console.log("Rezervacija je obrisana");
         // alert("Rezervacija je obrisana");
         location.reload(true);
@@ -143,7 +143,7 @@ $('#dodajRez').submit(function(){
     });
     
     request.done(function(response, textStatus, jqXHR){
-        if(response==="radi"){                              //iz nekog razloga ne radi uslov u if
+        if(response.trim()==="radi"){                              //iz nekog razloga ne radi uslov u if
             alert("Rezervacija prihvacena");
             console.log("Uspesno zakazivanje");
             location.reload(true);
@@ -180,13 +180,12 @@ $('#izmeniRez').submit(function(){
   });
   
   request.done(function(response, textStatus, jqXHR){
-      if(response==="radi"){                              //iz nekog razloga ne radi uslov u if
-          alert("Izmena prihvacena");
-          console.log("Uspesno zakazivanje");
-          //location.reload(true);
+      if(response.trim()==="radi"){                              //iz nekog razloga ne radi uslov u if
+          console.log("Uspesna izmena");
+          location.reload(true);
       }else {
         console.log("Izmena je neuspesna" +response);
-        //location.reload(true);
+        location.reload(true);
       }
   });
 
@@ -197,7 +196,7 @@ $('#izmeniRez').submit(function(){
 
 $('#dodajSto').submit(function(){
   event.preventDefault();
-  console.log("Dodaj je pokrenut");
+  console.log("Dodavanje pokrenuto");
   const $form = $(this);
   const $inputs = $form.find(':input');
   const serijalizacija = $form.serialize();
@@ -210,12 +209,12 @@ $('#dodajSto').submit(function(){
   });
   
   request.done(function(response, textStatus, jqXHR){
-      if(response==="radi"){                              //iz nekog razloga ne radi uslov u if
-          alert("Dodat sto");
+
+      if(response.trim()==="radi"){                              //iz nekog razloga ne radi uslov u if
           console.log("Uspesno dodat sto");
           location.reload(true);
       }else {
-        console.log("Dodavanje stola je neuspesno" +response);
+        console.log("Dodavanje stola je neuspesno"+response);
         location.reload(true);
       }
   });

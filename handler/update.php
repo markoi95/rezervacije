@@ -7,10 +7,10 @@
 
         $status = Rez::update($_POST['rezID'],$_POST['stoUpdate'], $_POST['datum1'], $_POST['detalji1'], $_POST['korisnik1'], $conn);
         if ($status) {
-            echo 'Uspesno';
+            echo 'radi';
         } else {
             echo $status;
-            echo 'Neuspesno';
+            echo 'ne radi';
         }
     }
 

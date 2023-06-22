@@ -17,7 +17,7 @@
 
         $status = Stolovi::add($_POST['naziv'],$_POST['brMesta'], $conn);
         if($status){
-            echo json_encode("radi");
+            echo 'radi';
         }else{
             echo 'ne radi';
         }
