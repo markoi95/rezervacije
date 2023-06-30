@@ -20,6 +20,11 @@ public static function logIn($user, mysqli $conn){
     
     return $conn->query($query);
 }
+public static function getAll(mysqli $conn) //dobija konekciju sa bazom kao ulazni element
+    {
+        $q = "SELECT * FROM user";               //u varijablu q upisi sve kolone iz tabele 
+        return $conn->query($q);                //objektno orijentisan nacin za vracanje query-a kao rezultata
+    }
 
 }
 ?>

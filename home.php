@@ -3,6 +3,7 @@
 require "dbBroker.php";
 require "model/rezervacija.php";
 require "model/stolovi.php";
+require "model/user.php";
 
 session_start();
 if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
@@ -10,18 +11,25 @@ if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
     exit();
 }
 
-$resultRez = Rez::getAll($conn);    //varijabla za sve rezervacije, atr: rezID, sto, datumRez, opis
-if (!$resultRez) {
+$resultRez = Rez::getAllPending($conn);    //varijabla za sve rezervacije, atr: rezID, sto, datumRez, opis; objekat,
+if (!$resultRez) {                  //update funkcije da ne poziva rezervacije iz proslosti
     echo "Greska kod upita<br>";
     exit();
 }
 
-$resultSto = Stolovi::getAll($conn); //varijabla za sve stolove, atr: stoID, naziv, brMesta
+$resultSto = Stolovi::getAll($conn); //varijabla za sve stolove, atr: stoID, naziv, brMesta; objekat
+if (!$resultSto) {
+    echo "Greska kod upita<br>";
+    exit();
+}
+$resultUser = User::getAll($conn); //varijabla za sve stolove, atr: stoID, naziv, brMesta; objekat
 if (!$resultSto) {
     echo "Greska kod upita<br>";
     exit();
 }
 
+//funkcija za sortiranje #resultSto koja vraca niz objekata (atr: stoID, naziv, brMesta) sortiran po nazivu (num,abc);
+//funkcija za sortiranje #resultRez koja vraca niz objekata (atr: rezID, sto, datumRez, opis, korisnik)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +54,7 @@ if (!$resultSto) {
                     <?php
                         while ($redSto = $resultSto->fetch_array()) {
                     ?>
-                    <div class="col-md-3 mt-2 mb-2"> 
+                    <div class="col-sm-3 mt-2 mb-2"> 
                             <!-- Button trigger modal -->
                                 <button type="button" id="<?php echo $redSto["naziv"]?>" onClick="reply_stoID(this.id)" 
                                     class="btn btnStolovi fs-3 border border-5 rounded-5 fw-bold" data-bs-toggle="modal" data-bs-target="#dodajRezModal">
@@ -136,19 +144,33 @@ if (!$resultSto) {
                     </table>
                 </div>
             </div>
-            <div class="col-3 pt-3">
-                <?php
-                   while ($redRez = $resultRez->fetch_array()) {
-                ?>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        Default radio
-                    </label>
-                </div>
+            <div class="col-3 pt-3 pe-3">
+                <div class="bg-light">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Filtriraj po korisniku:</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                        <?php
+                            foreach($resultUser as $redUser) {
+                        ?>
+                            <option><?php echo $redUser["name"]?></option>
                 <?php
                     }
                 ?>
+                        </select>
+                    </div
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Filtriraj po datumu rezervacije:</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                        <?php
+                            foreach($resultRez as $redRez) {
+                        ?>
+                            <option><?php echo $redRez["datumRez"]?></option>
+                <?php
+                    }
+                ?>
+                        </select>
+                    </div
+                </div>
             </div>
         </div>
 
@@ -173,7 +195,7 @@ if (!$resultSto) {
                         </div>
                         
                         <div class="form-group">
-                            <input class="form-control form-control-lg mb-3" type="date" name="datum" id="datepicker" required> <!-- dodati restrikciju -->
+                            <input class="form-control form-control-lg mb-3" type="date" name="datum" id="datepicker" min="<?php echo date('Y-m-d'); ?>" required> <!-- dodati restrikciju -->
                         </div>
 
                         <div class="form-group">
@@ -211,7 +233,9 @@ if (!$resultSto) {
                     </div>
                 </div>
                     <div class="modal-footer">
+                        <div class="form-group">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ZATVORI</button>
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-secondary" type="submit" id="dodajS">POTVRDI</button>
                         </div>
@@ -288,7 +312,7 @@ if (!$resultSto) {
                             <input  class="form-control form-control-lg" type="text" name="detalji1" placeholder="Unesi detalje" required>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-secondary" type="submit" id="zakazi">POTVRDI</button>
+                            <button class="btn btn-secondary" type="submit" id="zakazi" data-bs-dismiss="modal">POTVRDI</button>
                         </div>
                     </div>
                 </div>
