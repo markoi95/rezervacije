@@ -22,6 +22,11 @@ class Rez {
         $q = "SELECT * FROM rezervacije";               //u varijablu q upisi sve kolone iz tabele rez
         return $conn->query($q);                //objektno orijentisan nacin za vracanje query-a kao rezultata
     }
+    public static function getAllPending(mysqli $conn) //dobija konekciju sa bazom kao ulazni element
+    {
+        $q = "SELECT * FROM rezervacije WHERE datumRez>=CURDATE() ORDER BY datumRez ASC";               //u varijablu q upisi sve kolone iz tabele rez
+        return $conn->query($q);                //objektno orijentisan nacin za vracanje query-a kao rezultata
+    }
     public static function deleteById($rezID, mysqli $conn) //ulazni element id koji cemo da obrisemo i konekcija sa bazom
     {
         $q = "DELETE FROM rezervacije WHERE rezID=$rezID"; //kveri za brisanje id-a iz tabele
@@ -29,7 +34,7 @@ class Rez {
     }
     public static function deleteBySto($sto, mysqli $conn) //ulazni element id koji cemo da obrisemo i konekcija sa bazom
     {
-        $q = "DELETE FROM rezervacije WHERE sto=$sto"; //kveri za brisanje id-a iz tabele
+        $q = "DELETE FROM rezervacije WHERE sto='$sto'"; //kveri za brisanje id-a iz tabele
         return $conn->query($q);                   //vracanje tabele (bez obrisanog id-a)
     }
     public static function add($sto, $datumRez, $opis, $korisnik, mysqli $conn) // svi atributi objekta osim id-a, sam se generise

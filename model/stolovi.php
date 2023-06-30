@@ -15,7 +15,7 @@ class Stolovi {
 
     public static function getAll(mysqli $conn) //dobija konekciju sa bazom kao ulazni element
     {
-        $q = "SELECT * FROM stolovi";               //u varijablu q upisi sve kolone iz tabele 
+        $q = "SELECT * FROM stolovi ORDER BY length(naziv), naziv ASC";               //u varijablu q upisi sve kolone iz tabele 
         return $conn->query($q);                //objektno orijentisan nacin za vracanje query-a kao rezultata
     }
     public static function deleteById($stoID, mysqli $conn) //ulazni element id koji cemo da obrisemo i konekcija sa bazom
@@ -25,9 +25,9 @@ class Stolovi {
     }
     public static function deleteBySto($sto, mysqli $conn) //ulazni element id koji cemo da obrisemo i konekcija sa bazom
     {
-        $q = "DELETE FROM stolovi WHERE naziv=$sto"; //kveri za brisanje id-a iz tabele
+        $q = "DELETE FROM stolovi WHERE naziv='".$sto."'"; //kveri za brisanje id-a iz tabele
         return $conn->query($q);                   //vracanje tabele (bez obrisanog id-a)
-    }
+    } 
     public static function add($naziv, $brMesta, mysqli $conn) // svi atributi objekta osim id-a, sam se generise
     {
         $q = "INSERT INTO stolovi(naziv, brMesta) values('$naziv', '$brMesta')"; //kveri za ubacivanje u tabelu
