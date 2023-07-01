@@ -54,7 +54,7 @@ if (!$resultSto) {
                     <?php
                         while ($redSto = $resultSto->fetch_array()) {
                     ?>
-                    <div class="col-sm-3 mt-2 mb-2"> 
+                    <div class="col-sm-3 pt-5 mb-2"> 
                             <!-- Button trigger modal -->
                                 <button type="button" id="<?php echo $redSto["naziv"]?>" onClick="reply_stoID(this.id)" 
                                     class="btn btnStolovi fs-3 border border-5 rounded-5 fw-bold" data-bs-toggle="modal" data-bs-target="#dodajRezModal">
@@ -93,7 +93,7 @@ if (!$resultSto) {
     </div>                           
     <!-- //zatvara container-fluid -->
 
-        <div class="row ms-5 pt-3 justify-content-md-center">
+        <div class="row ms-5 pt-3 justify-content-center">
             <div class="col-4">
                 <button type="button" id="prikazi" onclick="prikaziRezervacije()" class="btn fs-5 fw-bold border border-1">САКРИЈ РЕЗЕРВАЦИЈЕ</button>
             </div>
@@ -101,13 +101,13 @@ if (!$resultSto) {
 
         <div class="row ms-5 pt-3" id="tabelaRezervacija">
             <div class="col">
-                <div class="container" >   
+                <div class="container-fluid" >   
                     <?php if(empty($resultRez)){ ?>
                         <div class="text-center fs-1 " ><?php echo "NEMA REZERVACIJA" ?></div>
                     <?php
                         }else{
                             ?>
-                    <table class="table text-center table-bordered sortable">
+                    <table class="table text-center table-bordered sortable" id="tabRez">
                         <thead >
                             <tr>
                                 <th scope="col">Сто</th>
@@ -145,31 +145,14 @@ if (!$resultSto) {
                 </div>
             </div>
             <div class="col-3 pt-3 pe-3">
-                <div class="bg-light">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Filtriraj po korisniku:</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                        <?php
-                            foreach($resultUser as $redUser) {
-                        ?>
-                            <option><?php echo $redUser["name"]?></option>
-                <?php
-                    }
-                ?>
-                        </select>
-                    </div
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Filtriraj po datumu rezervacije:</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                        <?php
-                            foreach($resultRez as $redRez) {
-                        ?>
-                            <option><?php echo $redRez["datumRez"]?></option>
-                <?php
-                    }
-                ?>
-                        </select>
-                    </div
+                <div class="container-fluid bg-light border border-5 rounded-5 border-dark fw-bold" id="filter">
+                    <div>
+                        <h2>Filter</h2>
+                        <p>Unesi sto, korisnika, datum ili opis:</p>
+                        <input id="myInput" type="text" placeholder="Pretrazi">
+                        <br><br
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -325,7 +308,7 @@ if (!$resultSto) {
     
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>                
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <!-- <script>
         function proveriNaziv(){

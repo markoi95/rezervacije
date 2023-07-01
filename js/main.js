@@ -3,6 +3,14 @@
   },function(){
   $(this).removeClass('bg-success');
 }); */
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tabRez tbody tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
 $('.ok').on('click', function(e){
    alert($("#table tr.selected td:first").html());

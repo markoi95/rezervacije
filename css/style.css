@@ -9,7 +9,9 @@ body{
  .uloguj:hover{
     background-color: #191970 !important;
 }
-
+#filter{
+    max-width:300px;
+}
 #dobrodosli{
     color: #5f08a7;
 }
