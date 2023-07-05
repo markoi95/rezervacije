@@ -66,7 +66,7 @@ if (!$resultSto) {
                 </div>
             </div>
 
-                <div class="col pt-3 ">
+                <div class="col-sm-3 pt-3 ">
                     <div class="container">
                         <div class="d-grid gap-2 col mx-auto">
                             <div class="text-center">
