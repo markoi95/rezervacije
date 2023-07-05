@@ -57,10 +57,10 @@ function prikaziRezervacije() {
   }
   
   var y = document.getElementById("prikazi")
-  if (y.innerHTML =="ПРИКАЖИ РЕЗЕРВАЦИЈЕ") {
-    y.innerHTML  = "САКРИЈ РЕЗЕРВАЦИЈЕ";
+  if (y.innerHTML =="PRIKAŽI REZERVACIJE") {
+    y.innerHTML  = "SAKRIJ REZERVACIJE";
   }else {
-    y.innerHTML  = "ПРИКАЖИ РЕЗЕРВАЦИЈЕ";
+    y.innerHTML  = "PRIKAŽI REZERVACIJE";
  }
 }
 
@@ -152,7 +152,7 @@ $('#dodajRez').submit(function(){
     
     request.done(function(response, textStatus, jqXHR){
         if(response.trim()==="radi"){                              //iz nekog razloga ne radi uslov u if
-            alert("Rezervacija prihvacena");
+           // alert("Rezervacija prihvacena");
             console.log("Uspesno zakazivanje");
             location.reload(true);
         }else {

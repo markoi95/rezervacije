@@ -95,7 +95,7 @@ if (!$resultSto) {
 
         <div class="row ms-5 pt-3 justify-content-center">
             <div class="col-4">
-                <button type="button" id="prikazi" onclick="prikaziRezervacije()" class="btn fs-5 fw-bold border border-1">САКРИЈ РЕЗЕРВАЦИЈЕ</button>
+                <button type="button" id="prikazi" onclick="prikaziRezervacije()" class="btn fs-5 fw-bold border border-1">SAKRIJ REZERVACIJE</button>
             </div>
         </div>
 
@@ -128,10 +128,10 @@ if (!$resultSto) {
                             <td><?php echo $redRez["opis"] ?></td>
                             <td><?php echo $redRez["korisnik"] ?></td>
                             <td>
-                                <button type="button" onClick="obrisiRez(<?php echo $redRez["rezID"] ?>)"class="btn btn-danger fw-bold">ОБРИШИ</button>
+                                <button type="button" onClick="obrisiRez(<?php echo $redRez["rezID"] ?>)"class="btn btn-danger fw-bold">OBRIŠI</button>
 
                                 <button type="button" class="btn btn-success fw-bold" onClick="reply_rezID(<?php echo $redRez["rezID"]?>)" 
-                                    data-bs-toggle="modal" data-bs-target="#izmeniRezModal">ИЗМЕНИ</button>
+                                    data-bs-toggle="modal" data-bs-target="#izmeniRezModal">IZMENI</button>
                                     
     
                             </td>
