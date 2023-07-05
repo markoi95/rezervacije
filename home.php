@@ -42,7 +42,7 @@ if (!$resultSto) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <button type="button" onclick="location.href='logout.php';"class="btn btn-warning float-end m-2 fw-bold">LOG OUT</button>
+    <button type="button" onclick="location.href='logout.php';"class="btn btn-warning float-end m-2 fw-bold">ODJAVI ME</button>
     <div class="container text-center">
         <h1 style="color:whitesmoke" class="display-1 fw-bold">Naslov 12345</h1>    
     </div>
@@ -203,7 +203,7 @@ if (!$resultSto) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title display-5" >Unesi detalje:</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
                 <div class="modal-body">
                     <form action="#" method="post" id="dodajSto">
@@ -289,7 +289,7 @@ if (!$resultSto) {
                         </div>
 
                         <div class="form-group">
-                            <input class="form-control form-control-lg mb-3" type="date" name="datum1" placeholder="Odaberi datum" required>
+                            <input class="form-control form-control-lg mb-3" type="date" min="<?php echo date('Y-m-d'); ?>" name="datum1" placeholder="Odaberi datum" required>
                         </div>
                         <div class="form-group">
                             <input  class="form-control form-control-lg" type="text" name="detalji1" placeholder="Unesi detalje" required>
